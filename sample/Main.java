@@ -94,20 +94,21 @@ public class Main extends Application {
                     coordinates1.set(i + 1, 999);
                 }
             }
+
         }
+        System.out.println(coordinates1);
         for (int t = 0; t < coordinates1.size(); t += 2) {
             try {
-                if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 && coordinates1.get(t + 4) == 999 ||
-                        (coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 && coordinates1.get(t + 8) == 999)
-                        || (coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)
+                if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 && coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12) ||
+                        (t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 && coordinates1.get(t + 8) == 999) ||
+                        (coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)
                         || (coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 && coordinates1.get(t + 12) == 999)) {
-                    System.out.println("lkj");
+
                     System.exit(1);
                 }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("sss");
+            } catch (IndexOutOfBoundsException ignore) {
             }
-        }
+        }//[999, 999, 50, 0, 999, 999, 0, 50, 999, 999, 100, 50, 0, 100, 50, 100, 100, 100]
         return true;
     }
 
