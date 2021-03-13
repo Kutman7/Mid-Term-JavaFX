@@ -4,6 +4,7 @@ package sample;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -24,6 +25,7 @@ public class Main extends Application {
     private static final ArrayList<Integer> untouchable = new ArrayList<>();
     private final ArrayList<Integer> clicked_x = new ArrayList<>();
     private final ArrayList<Integer> clicked_y = new ArrayList<>();
+    private static boolean playable = true;
 
     private Parent createContent() {
         root.setPrefSize(151, 151);
@@ -49,6 +51,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
+        primaryStage.getIcons().add(new Image("/sample/x.png"));
+        primaryStage.setTitle("Tic Tac Toe");
     }
 
     private class Tile extends StackPane {
@@ -65,13 +69,13 @@ public class Main extends Application {
                 if (turn > 9) {
                     System.exit(1);
                 }
-                if (turn % 2 == 0) {
+                if (turn % 2 == 0 && playable) {
 
                     clicked_x.add((int) Math.round(translateXProperty().getValue()));
                     clicked_x.add((int) Math.round(translateYProperty().getValue()));
                     if (playable(clicked_x, coordinates1))
                         drawX();
-                } else {
+                } else if (playable) {
 
                     clicked_y.add((int) Math.round(translateXProperty().getValue()));
                     clicked_y.add((int) Math.round(translateYProperty().getValue()));
@@ -104,16 +108,16 @@ public class Main extends Application {
             try {
                 if ((t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 && coordinates1.get(t + 8) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 8), untouchable.get(t + 9), 40, 14, 10, 44);
-                    break;
+                    playable = false;
                 } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 16), untouchable.get(t + 17), 10, 14, 40, 44);
-                    break;
+                    playable = false;
                 } else if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 && coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 4), untouchable.get(t + 5), 10, 28, 40, 28);
-                    break;
+                    playable = false;
                 } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 && coordinates1.get(t + 12) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 12), untouchable.get(t + 13), 26, 12, 26, 45);
-                    break;
+                    playable = false;
                 }
 
             } catch (IndexOutOfBoundsException ignore) {
