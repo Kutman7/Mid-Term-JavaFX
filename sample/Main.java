@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class Main extends Application {
-    private final Pane root = new Pane();
+    private static final Pane root = new Pane();
     private int turn = 0;
     private final ArrayList<Integer> coordinates1 = new ArrayList<>();
     private final ArrayList<Integer> coordinates2 = new ArrayList<>();
@@ -104,14 +105,23 @@ public class Main extends Application {
                         (coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)
                         || (coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 && coordinates1.get(t + 12) == 999)) {
 
-                    System.exit(1);
+                    playWinAnimation();
+                    break;
                 }
             } catch (IndexOutOfBoundsException ignore) {
             }
-        }//[999, 999, 50, 0, 999, 999, 0, 50, 999, 999, 100, 50, 0, 100, 50, 100, 100, 100]
+        }
         return true;
     }
+    public static void playWinAnimation() {
+        Line line = new Line();
+        line.setStartX(10);
+        line.setStartY(13);
+        line.setEndX(143);
+        line.setEndY(145);
 
+        root.getChildren().add(line);
+    }
     public static void main(String[] args) {
         launch(args);
     }
