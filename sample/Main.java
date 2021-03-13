@@ -21,6 +21,7 @@ public class Main extends Application {
     private int turn = 0;
     private final ArrayList<Integer> coordinates1 = new ArrayList<>();
     private final ArrayList<Integer> coordinates2 = new ArrayList<>();
+    private static final ArrayList<Integer> untouchable = new ArrayList<>();
     private final ArrayList<Integer> clicked_x = new ArrayList<>();
     private final ArrayList<Integer> clicked_y = new ArrayList<>();
 
@@ -37,6 +38,8 @@ public class Main extends Application {
                 coordinates1.add(i * 50);
                 coordinates2.add(j * 50);
                 coordinates2.add(i * 50);
+                untouchable.add(j * 50);
+                untouchable.add(i * 50);
             }
         }
         return root;
@@ -97,31 +100,40 @@ public class Main extends Application {
             }
 
         }
-        System.out.println(coordinates1);
         for (int t = 0; t < coordinates1.size(); t += 2) {
             try {
-                if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 && coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12) ||
-                        (t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 && coordinates1.get(t + 8) == 999) ||
-                        (coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)
-                        || (coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 && coordinates1.get(t + 12) == 999)) {
-
-                    playWinAnimation();
+                if ((t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 && coordinates1.get(t + 8) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 8), untouchable.get(t + 9), 40, 14, 10, 44);
+                    break;
+                } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 && coordinates1.get(t + 16) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 16), untouchable.get(t + 17), 10, 14, 40, 44);
+                    break;
+                } else if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 && coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 4), untouchable.get(t + 5), 10, 28, 40, 28);
+                    break;
+                } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 && coordinates1.get(t + 12) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 12), untouchable.get(t + 13), 26, 12, 26, 45);
                     break;
                 }
+
             } catch (IndexOutOfBoundsException ignore) {
             }
         }
         return true;
     }
-    public static void playWinAnimation() {
+
+    public static void winLine(int startX, int startY, int endX, int endY, int x, int y, int x1, int y1) {
         Line line = new Line();
-        line.setStartX(10);
-        line.setStartY(13);
-        line.setEndX(143);
-        line.setEndY(145);
+        line.setStroke(Color.CORNFLOWERBLUE);
+        line.setStrokeWidth(5);
+        line.setStartX(startX + x);
+        line.setStartY(startY + y);
+        line.setEndX(endX + x1);
+        line.setEndY(endY + y1);
 
         root.getChildren().add(line);
     }
+
     public static void main(String[] args) {
         launch(args);
     }
