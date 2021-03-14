@@ -39,8 +39,10 @@ import java.util.ArrayList;
 
 ```
 
-Create "<ins>Main</ins>" class which extends Application. Create Pane, create "turn" variable to designate as turn, create "playable"
-variable to check if game is over or not, create two "clicked" arrays to mark pressed "<ins>Tiles</ins>" and create two "
+Create "<ins>Main</ins>" class which extends Application. Create Pane, create "turn" variable to designate as turn,
+create "playable"
+variable to check if game is over or not, create two "clicked" arrays to mark pressed "<ins>Tiles</ins>" and create
+two "
 coordinate" arrays to get coordinates of combo "<ins>Tiles</ins>" to draw lines between them.
 
 ```Java
@@ -85,7 +87,7 @@ Create Scene, set title and icon.
 ```Java
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
         primaryStage.getIcons().add(new Image("/sample/x.png"));
@@ -94,9 +96,9 @@ public class Main extends Application {
 }
 ```
 
-Create "<ins>Tile</ins>" class which will create rectangle tiles to play. Create mouse event handler to create "✖" or "⚫" when
-mouse clicked. Do not forget to mark clicked "<ins>Tiles</ins>" in "clicked" array which we created before. Stop the program if user
-clicked more than 9 times or if we have winner. Of course create "✖" and "⚫" text setters.
+Create "<ins>Tile</ins>" class which will create rectangle tiles to play. Create mouse event handler to create "✖" or "
+⚫" when mouse clicked. Do not forget to mark clicked "<ins>Tiles</ins>" in "clicked" array which we created before. Stop
+the program if user clicked more than 9 times or if we have winner. Of course create "✖" and "⚫" text setters.
 
 ```Java
     private class Tile extends StackPane {
@@ -138,7 +140,9 @@ clicked more than 9 times or if we have winner. Of course create "✖" and "⚫"
     }
 }   
 ```
-Create "playable" method to search combos.  
+
+Create "playable" method to search combos.
+
 ```Java
 public class Main extends Application {
     public static boolean playable(ArrayList<Integer> clicked1, ArrayList<Integer> coordinates1) {
@@ -184,7 +188,9 @@ public class Main extends Application {
 }
 
 ```
+
 Create "winLine" method to sketch line which will connect combos.
+
 ```Java
 public class Main extends Application {
     public static void winLine(int startX, int startY, int endX, int endY, int x, int y, int x1, int y1) {
@@ -201,3 +207,5 @@ public class Main extends Application {
 }
 ```
 
+That's all, I think you understood
+all. [There is full Code](https://github.com/Kutman7/Mid-Term-JavaFX/blob/main/sample/Main.java).
