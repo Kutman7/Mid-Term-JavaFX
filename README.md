@@ -8,5 +8,5 @@ ___
 ## Description
 * Screenshots:
 
-![Game Window](file:///C:/Users/User/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/Game%20window.png)
-![Game Window](file:///C:/Users/User/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/Game%20in%20work.png)
+![Game window](https://user-images.githubusercontent.com/73386100/111062011-8dae3380-84d0-11eb-9ee3-af9a84fdeeb6.png)
+![Game in work](https://user-images.githubusercontent.com/73386100/111061997-75d6af80-84d0-11eb-9ff5-da9a1ec0d805.png)
