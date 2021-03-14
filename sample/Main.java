@@ -149,7 +149,7 @@ public class Main extends Application {
             FileWriter myWriter = new FileWriter("D:\\Mid-Term-JavaFX\\Winner List.txt", true);
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            myWriter.write("Winner is" + winner + " :" + dtf.format(now) + "\n");
+            myWriter.write("Winner is " + winner + ": " + dtf.format(now) + "\n");
             myWriter.close();
         } catch (IOException ignore) {
 
