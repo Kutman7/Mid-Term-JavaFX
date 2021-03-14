@@ -138,4 +138,66 @@ clicked more than 9 times or if we have winner. Of course create "✖" and "⚫"
     }
 }   
 ```
+Create "playable" method to search combos.  
+```Java
+public class Main extends Application {
+    public static boolean playable(ArrayList<Integer> clicked1, ArrayList<Integer> coordinates1) {
+        for (int i = 0; i < coordinates1.size(); i += 2) {
+            for (int j = 0; j < clicked1.size(); j += 2) {
+                if (coordinates1.get(i).equals(clicked1.get(j)) &&
+                        coordinates1.get(i + 1).equals(clicked1.get(j + 1))) {
+                    coordinates1.set(i, 999);
+                    coordinates1.set(i + 1, 999);
+                }
+            }
+
+        }
+        for (int t = 0; t < coordinates1.size(); t += 2) {
+            try {
+                if ((t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 &&
+                        coordinates1.get(t + 8) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 8),
+                            untouchable.get(t + 9), 40, 14, 10, 44);
+                    playable = false;
+                } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 &&
+                        coordinates1.get(t + 16) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 16),
+                            untouchable.get(t + 17), 10, 14, 40, 44);
+                    playable = false;
+                } else if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 &&
+                        coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 4),
+                            untouchable.get(t + 5), 10, 28, 40, 28);
+                    playable = false;
+                } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 &&
+                        coordinates1.get(t + 12) == 999)) {
+                    winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 12),
+                            untouchable.get(t + 13), 26, 12, 26, 45);
+                    playable = false;
+                }
+
+            } catch (IndexOutOfBoundsException ignore) {
+            }
+        }
+        return true;
+    }
+}
+
+```
+Create "winLine" method to sketch line which will connect combos.
+```Java
+public class Main extends Application {
+    public static void winLine(int startX, int startY, int endX, int endY, int x, int y, int x1, int y1) {
+        Line line = new Line();
+        line.setStroke(Color.CORNFLOWERBLUE);
+        line.setStrokeWidth(5);
+        line.setStartX(startX + x);
+        line.setStartY(startY + y);
+        line.setEndX(endX + x1);
+        line.setEndY(endY + y1);
+
+        root.getChildren().add(line);
+    }
+}
+```
 
