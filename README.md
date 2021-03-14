@@ -39,9 +39,9 @@ import java.util.ArrayList;
 
 ```
 
-Create main class which extends Application. Create Pane, create "turn" variable to designate as turn, create "playable"
+Create <ins>"Main"</ins> class which extends Application. Create Pane, create "turn" variable to designate as turn, create "playable"
 variable to check if game is over or not, create two "clicked" arrays to mark pressed "Tiles" and create two "
-coordinate" arrays to get coordinates of combo "Tiles" to draw lines between them.
+coordinate" arrays to get coordinates of combo "<ins>Tiles</ins>" to draw lines between them.
 
 ```Java
 public class Main extends Application {
@@ -94,8 +94,8 @@ public class Main extends Application {
 }
 ```
 
-Create "Tile" class which will create rectangle tiles to play. Create mouse event handler to create "✖" or "⚫" when
-mouse clicked. Do not forget to mark clicked "Tiles" in "clicked" array which we created before. Stop the program if user
+Create "<ins>Tile</ins>" class which will create rectangle tiles to play. Create mouse event handler to create "✖" or "⚫" when
+mouse clicked. Do not forget to mark clicked "<ins>Tiles</ins>" in "clicked" array which we created before. Stop the program if user
 clicked more than 9 times or if we have winner. Of course create "✖" and "⚫" text setters.
 
 ```Java
