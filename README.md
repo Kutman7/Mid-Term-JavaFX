@@ -58,7 +58,7 @@ public class Main extends Application {
         root.setPrefSize(151, 151);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                Tile tile = new Tile();
+                Tile tile = new Tile(); // We will create Tile class later.
                 tile.setTranslateX(j * 50);
                 tile.setTranslateY(i * 50);
 
@@ -79,3 +79,63 @@ public class Main extends Application {
     }
 }
 ```
+
+Create Scene, set title and icon.
+
+```Java
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage){
+        primaryStage.setScene(new Scene(createContent()));
+        primaryStage.show();
+        primaryStage.getIcons().add(new Image("/sample/x.png"));
+        primaryStage.setTitle("Tic Tac Toe");
+    }
+}
+```
+
+Create "Tile" class which will create rectangle tiles to play. Create mouse event handler to create "✖" or "⚫" when
+mouse clicked. Do not forget to mark clicked "Tiles" in "clicked" array which we created before. Stop the program if user
+clicked more than 9 times or if we have winner. Of course create "✖" and "⚫" text setters.
+
+```Java
+    private class Tile extends StackPane {
+    private final Text text = new Text();
+
+    public Tile() {
+        Rectangle border = new Rectangle(50, 50);
+        border.setFill(Color.GRAY);
+        border.setStroke(Color.WHITE);
+        text.setFont(Font.font(40));
+        getChildren().addAll(border, text);
+        setOnMouseClicked(event -> {
+            turn++;
+            if (turn > 9) {
+                System.exit(1);
+            }
+            if (turn % 2 == 0 && playable) {
+
+                clicked_x.add((int) Math.round(translateXProperty().getValue()));
+                clicked_x.add((int) Math.round(translateYProperty().getValue()));
+                if (playable(clicked_x, coordinates1))
+                    drawX();
+            } else if (playable) {
+
+                clicked_y.add((int) Math.round(translateXProperty().getValue()));
+                clicked_y.add((int) Math.round(translateYProperty().getValue()));
+                if (playable(clicked_y, coordinates2))
+                    drawO();
+            }
+        });
+    }
+
+    private void drawX() {
+        text.setText("✖");
+    }
+
+    private void drawO() {
+        text.setText("⚫");
+    }
+}   
+```
+
