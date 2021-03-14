@@ -208,4 +208,4 @@ public class Main extends Application {
 ```
 
 That's all, I think you understood
-all. [There is full Code](https://github.com/Kutman7/Mid-Term-JavaFX/blob/main/sample/Main.java).
+all. [Here is full Code](https://github.com/Kutman7/Mid-Term-JavaFX/blob/main/sample/Main.java).
