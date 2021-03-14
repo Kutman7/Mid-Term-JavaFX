@@ -39,8 +39,8 @@ import java.util.ArrayList;
 
 ```
 
-Create <ins>"Main"</ins> class which extends Application. Create Pane, create "turn" variable to designate as turn, create "playable"
-variable to check if game is over or not, create two "clicked" arrays to mark pressed "Tiles" and create two "
+Create "<ins>Main</ins>" class which extends Application. Create Pane, create "turn" variable to designate as turn, create "playable"
+variable to check if game is over or not, create two "clicked" arrays to mark pressed "<ins>Tiles</ins>" and create two "
 coordinate" arrays to get coordinates of combo "<ins>Tiles</ins>" to draw lines between them.
 
 ```Java
