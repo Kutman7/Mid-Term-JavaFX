@@ -13,7 +13,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -73,13 +76,13 @@ public class Main extends Application {
 
                     clicked_x.add((int) Math.round(translateXProperty().getValue()));
                     clicked_x.add((int) Math.round(translateYProperty().getValue()));
-                    if (playable(clicked_x, coordinates1))
+                    if (playable(clicked_x, coordinates1, "✖"))
                         drawX();
                 } else if (playable) {
 
                     clicked_y.add((int) Math.round(translateXProperty().getValue()));
                     clicked_y.add((int) Math.round(translateYProperty().getValue()));
-                    if (playable(clicked_y, coordinates2))
+                    if (playable(clicked_y, coordinates2, "⚫"))
                         drawO();
                 }
             });
@@ -94,7 +97,7 @@ public class Main extends Application {
         }
     }
 
-    public static boolean playable(ArrayList<Integer> clicked1, ArrayList<Integer> coordinates1) {
+    public static boolean playable(ArrayList<Integer> clicked1, ArrayList<Integer> coordinates1, String winner) {
         for (int i = 0; i < coordinates1.size(); i += 2) {
             for (int j = 0; j < clicked1.size(); j += 2) {
                 if (coordinates1.get(i).equals(clicked1.get(j)) &&
@@ -103,29 +106,28 @@ public class Main extends Application {
                     coordinates1.set(i + 1, 999);
                 }
             }
-
         }
         for (int t = 0; t < coordinates1.size(); t += 2) {
             try {
                 if ((t == 4 && coordinates1.get(t) == 999 && coordinates1.get(t + 4) == 999 &&
                         coordinates1.get(t + 8) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 8),
-                            untouchable.get(t + 9), 40, 14, 10, 44);
+                            untouchable.get(t + 9), 40, 14, 10, 44, winner);
                     playable = false;
                 } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 8) == 999 &&
                         coordinates1.get(t + 16) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 16),
-                            untouchable.get(t + 17), 10, 14, 40, 44);
+                            untouchable.get(t + 17), 10, 14, 40, 44, winner);
                     playable = false;
                 } else if (coordinates1.get(t) == 999 && coordinates1.get(t + 2) == 999 &&
                         coordinates1.get(t + 4) == 999 && (t == 0 || t == 6 || t == 12)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 4),
-                            untouchable.get(t + 5), 10, 28, 40, 28);
+                            untouchable.get(t + 5), 10, 28, 40, 28, winner);
                     playable = false;
                 } else if ((coordinates1.get(t) == 999 && coordinates1.get(t + 6) == 999 &&
                         coordinates1.get(t + 12) == 999)) {
                     winLine(untouchable.get(t), untouchable.get(t + 1), untouchable.get(t + 12),
-                            untouchable.get(t + 13), 26, 12, 26, 45);
+                            untouchable.get(t + 13), 26, 12, 26, 45, winner);
                     playable = false;
                 }
 
@@ -135,7 +137,7 @@ public class Main extends Application {
         return true;
     }
 
-    public static void winLine(int startX, int startY, int endX, int endY, int x, int y, int x1, int y1) {
+    public static void winLine(int startX, int startY, int endX, int endY, int x, int y, int x1, int y1, String winner) {
         Line line = new Line();
         line.setStroke(Color.CORNFLOWERBLUE);
         line.setStrokeWidth(5);
@@ -143,7 +145,15 @@ public class Main extends Application {
         line.setStartY(startY + y);
         line.setEndX(endX + x1);
         line.setEndY(endY + y1);
+        try {
+            FileWriter myWriter = new FileWriter("D:\\Mid-Term-JavaFX\\Winner List.txt", true);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            myWriter.write("Winner is" + winner + " :" + dtf.format(now) + "\n");
+            myWriter.close();
+        } catch (IOException ignore) {
 
+        }
         root.getChildren().add(line);
     }
 
