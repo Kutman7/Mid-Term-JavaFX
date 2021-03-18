@@ -219,3 +219,13 @@ public class Main extends Application {
 
 That's all, I think you understood
 all. [Here is full Code](https://github.com/Kutman7/Mid-Term-JavaFX/blob/main/sample/Main.java).
+* [x] readme.md
+* [x] description
+* [x] screenshots
+* [x] links to video
+* [x] clean
+* [x] naming convention
+* [x] all comments removed except documentation comments
+
+* [x] following most of Code Conventions Rules
+* [x] Work with files
