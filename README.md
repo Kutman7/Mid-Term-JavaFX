@@ -5,7 +5,7 @@ My project for Midterm
 Author: **Kutman Eshenkulov**
 
 ___
-[Video Tutorial](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[Video Tutorial](https://drive.google.com/file/d/1NVTjV9chOSCabiQnKeDRuMN4pgiSmvI4/view?usp=sharing)
 
 ## Description
 
