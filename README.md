@@ -1,6 +1,6 @@
 # Tic Tac Toe game
 
-My project for Midterm
+My JavaFX project
 
 Author: **Kutman Eshenkulov**
 
