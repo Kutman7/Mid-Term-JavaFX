@@ -5,7 +5,7 @@ My JavaFX project
 Author: **Kutman Eshenkulov**
 
 ___
-[VIDEO TUTORIAL](https://drive.google.com/file/d/1NVTjV9chOSCabiQnKeDRuMN4pgiSmvI4/view?usp=sharing)
+
 
 ## Description
 
